@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Burg - Your Favorite Place for Delicious Food</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: #444;
+      background-color: #f9f9f9;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      background-color: #FF5722;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      height: 70px;
+    }
+
+    #logo {
+      font-size: 2em;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav {
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
+      font-size: 20px;
+    }
+
+    nav ul li a:hover {
+      color: #ffcc00;
+    }
+
+    .fa-cutlery:before,
+    .fa-utensils:before {
+      content: "\f2e7";
+      margin: 6px;
+    }
+
+    .fa-circle-info:before,
+    .fa-info-circle:before {
+      content: "\f05a";
+      margin: 5px;
+    }
+
+    .fa-envelope:before {
+      content: "\f0e0";
+      margin: 5px;
+    }
+
+    .fa-home-alt:before,
+    .fa-home-lg-alt:before,
+    .fa-home:before,
+    .fa-house:before {
+      content: "\f015";
+      margin: 5px;
+    }
+
+    .fa-pizza-slice:before {
+      content: "\f818";
+      margin: 5px;
+    }
+
+    #current-time {
+      color: #ffcc00;
+      font-size: 1.2em;
+    }
+
+    .hero {
+      background-image: url('restaurant.jpeg');
+      background-size: cover;
+      background-position: center;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-size: 3.5em;
+      margin: 0;
+      z-index: 2;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero p {
+      font-size: 1.5em;
+      margin: 10px 0;
+      z-index: 2;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    #open-close-time {
+      font-size: 2em;
+      font-weight: bold;
+      color: #ffcc00;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    #menu-preview {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #menu-preview h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #FF5722;
+    }
+
+    .filter-container {
+      margin-bottom: 20px;
+    }
+
+    .menu-container {
+      display: flex;
+      overflow: hidden;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    .menu-scroll {
+      display: flex;
+      animation: scroll 30s linear infinite;
+    }
+
+    .menu-item {
+      background-color: #f7f7f7;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
+      width: 250px;
+      margin: 0 10px;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .menu-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .menu-item h3 {
+      margin: 10px 0;
+      font-size: 1.5em;
+      color: #333;
+    }
+
+    .menu-item p {
+      margin: 5px 0;
+      font-weight: bold;
+      color: #FF5722;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      width: 100%;
+    }
+
+    .fa {
+      margin-right: 8px;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div id="logo"><i class="fa fa-pizza-slice"></i>Pizza Burg</div>
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="fa fa-home"></i>Home</a></li>
+        <li><a href="menu.html"><i class="fa fa-utensils"></i>Menu</a></li>
+        <li><a href="about.html"><i class="fa fa-info-circle"></i>About Us</a></li>
+        <li><a href="contact.html"><i class="fa fa-envelope"></i>Contact</a></li>
+      </ul>
+    </nav>
+    <div id="current-time"><i class="fa fa-clock"></i>Loading...</div>
+  </header>
+
+
+  <section class="hero">
+    <h1><i class="fa fa-pizza-slice"></i> Welcome to Pizza Burg!</h1>
+    <p>Your favorite place for delicious food.</p>
+    <div id="open-close-time"><i class="fa fa-clock"></i> Open: 10:00 AM - 11:00 PM</div>
+  </section>
+
+
+  <section id="menu-preview">
+    <h2><i class="fa fa-star"></i> Featured Menu</h2>
+    <div class="filter-container">
+      <label for="filter">Filter by:</label>
+      <select id="filter" onchange="filterMenu()">
+        <option value="all">All</option>
+        <option value="burgers">Burgers</option>
+        <option value="pasta">Pasta</option>
+        <option value="pizza">Pizza</option>
+        <option value="salad">Salad</option>
+      </select>
+    </div>
+    <div class="menu-container">
+      <div class="menu-scroll" id="menu-items-container"></div>
+    </div>
+  </section>
+
+
+  <footer>
+    <p>&copy; 2024 Pizza Burg. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+      const timeString = now.toLocaleTimeString([], options);
+      document.getElementById('current-time').textContent = timeString;
+    }
+
+
+    setInterval(updateTime, 1000);
+
+
+    const menuItems = [
+      { name: 'Burger', image: 'burger.jpeg', price: '$10' },
+      { name: 'Pasta', image: 'pasta.jpeg', price: '$12' },
+      { name: 'Pizza', image: 'pizza.jpeg', price: '$15' },
+      { name: 'Salad', image: 'salad.jpeg', price: '$8' },
+      { name: 'Fries', image: 'fries.jpeg', price: '$5' },
+      { name: 'Steak', image: 'steak.jpeg', price: '$20' },
+      { name: 'Tacos', image: 'tacos.jpeg', price: '$9' },
+      { name: 'Sushi', image: 'sushi.jpeg', price: '$22' },
+      { name: 'Ramen', image: 'ramen.jpeg', price: '$14' }
+    ];
+
+
+    function displayMenuItems() {
+      const container = document.getElementById('menu-items-container');
+      container.innerHTML = '';
+
+
+      menuItems.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.className = 'menu-item';
+
+        menuItem.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" class="menu-image">
+          <h3>${item.name}</h3>
+          <p><i class="fa fa-dollar-sign"></i> ${item.price}</p>
+        `;
+
+        container.appendChild(menuItem);
+      });
+    }
+
+
+    displayMenuItems();
+
+
+    function filterMenu() {
+      const filter = document.getElementById('filter').value;
+      const container = document.getElementById('menu-items-container');
+      container.innerHTML = '';
+
+      const filteredItems = filter === 'all' ? menuItems : menuItems.filter(item => item.category === filter);
+
+      filteredItems.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.className = 'menu-item';
+
+        menuItem.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" class="menu-image">
+          <h3>${item.name}</h3>
+          <p><i class="fa fa-dollar-sign"></i> ${item.price}</p>
+        `;
+
+        container.appendChild(menuItem);
+      });
+    }
+  </script>
+</body>
+
+</html>

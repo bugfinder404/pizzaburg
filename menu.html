@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Burg - Menu</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 30px;
+      background-color: #FF5722;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      height: 70px;
+    }
+
+    #logo {
+      font-size: 2em;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: color 0.3s;
+      font-size: 20px;
+
+    }
+
+    .fa-cutlery:before,
+    .fa-utensils:before {
+      content: "\f2e7";
+      margin: 6px;
+    }
+
+    .fa-circle-info:before,
+    .fa-info-circle:before {
+      content: "\f05a";
+      margin: 5px;
+    }
+
+    .fa-envelope:before {
+      content: "\f0e0";
+      margin: 5px;
+    }
+
+    .fa-home-alt:before,
+    .fa-home-lg-alt:before,
+    .fa-home:before,
+    .fa-house:before {
+      content: "\f015";
+      margin: 5px;
+    }
+
+    .fa-pizza-slice:before {
+      content: "\f818";
+      margin: 5px;
+    }
+
+
+    nav ul li a:hover {
+      color: #ffcc00;
+    }
+
+    #current-time {
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+    #menu-section {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    #menu-section h2 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #FF5722;
+
+    }
+
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 20px;
+      justify-items: center;
+      padding: 0 40px;
+    }
+
+    .menu-item {
+      text-align: center;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      width: 300px;
+      margin: 45px;
+
+    }
+
+    .menu-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-image {
+      width: 100%;
+      height: 250px;
+
+      object-fit: cover;
+      border-bottom: 2px solid #FF5722;
+
+    }
+
+    .menu-item h3 {
+      margin: 10px 0;
+      font-size: 1.5em;
+      color: #FF5722;
+
+    }
+
+    .menu-item p {
+      margin: 0;
+      font-size: 1.2em;
+      color: #555;
+    }
+
+
+    footer {
+      text-align: center;
+      background-color: #333;
+      color: white;
+      padding: 20px 0;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .social-icons {
+      margin-bottom: 10px;
+    }
+
+    .social-icons a {
+      color: white;
+      margin: 0 10px;
+      font-size: 1.5em;
+    }
+
+
+    @media (max-width: 1024px) {
+      .menu-items {
+        grid-template-columns: repeat(2, 1fr);
+
+        padding: 0 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-items {
+        grid-template-columns: 1fr;
+
+      }
+
+      .menu-item {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div id="logo"><i class="fa fa-pizza-slice"></i>Pizza Burg</div>
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="fa fa-home"></i>Home</a></li>
+        <li><a href="menu.html"><i class="fa fa-utensils"></i>Menu</a></li>
+        <li><a href="about.html"><i class="fa fa-info-circle"></i>About Us</a></li>
+        <li><a href="contact.html"><i class="fa fa-envelope"></i>Contact</a></li>
+      </ul>
+    </nav>
+    <div id="current-time"><i class="fa fa-clock"></i>Loading...</div>
+  </header>
+
+
+  <section id="menu-section">
+    <h2>Our Menu</h2>
+    <div class="menu-items" id="menu-items-container"></div>
+  </section>
+
+
+  <footer>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>&copy; 2024 Pizza Burg. All rights reserved.</p>
+  </footer>
+
+  <script>
+
+    function updateTime() {
+      const now = new Date();
+      const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+      const timeString = now.toLocaleTimeString([], options);
+      document.getElementById('current-time').textContent = timeString;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+
+    const menuItems = [
+      { name: 'Burger', image: 'burger.jpeg', price: '$10' },
+      { name: 'Pasta', image: 'pasta.jpeg', price: '$12' },
+      { name: 'Pizza', image: 'pizza.jpeg', price: '$15' },
+      { name: 'Salad', image: 'salad.jpeg', price: '$8' },
+      { name: 'Fries', image: 'fries.jpeg', price: '$5' },
+      { name: 'Steak', image: 'steak.jpeg', price: '$20' },
+      { name: 'Tacos', image: 'tacos.jpeg', price: '$9' },
+      { name: 'Sushi', image: 'sushi.jpeg', price: '$22' },
+      { name: 'Ramen', image: 'ramen.jpeg', price: '$14' }
+    ];
+
+    const menuItemsContainer = document.getElementById('menu-items-container');
+
+
+    menuItems.forEach(item => {
+      const menuItemDiv = document.createElement('div');
+      menuItemDiv.classList.add('menu-item');
+
+      menuItemDiv.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" class="menu-image">
+        <div>
+          <h3>${item.name}</h3>
+          <p>Price: ${item.price}</p>
+        </div>
+      `;
+      menuItemsContainer.appendChild(menuItemDiv);
+    });
+  </script>
+</body>
+
+</html>
